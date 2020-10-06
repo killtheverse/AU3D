@@ -64,24 +64,24 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             RotateView();
             // the jump state needs to read here to make sure it is not missed
-            if (!m_Jump)
-            {
-                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
-            }
+            // if (!m_Jump)
+            // {
+            //     m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+            // }
 
-            if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
-            {
-                StartCoroutine(m_JumpBob.DoBobCycle());
-                PlayLandingSound();
-                m_MoveDir.y = 0f;
-                m_Jumping = false;
-            }
-            if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded)
-            {
-                m_MoveDir.y = 0f;
-            }
+            // if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
+            // {
+            //     StartCoroutine(m_JumpBob.DoBobCycle());
+            //     PlayLandingSound();
+            //     m_MoveDir.y = 0f;
+            //     m_Jumping = false;
+            // }
+            // if (!m_CharacterController.isGrounded && !m_Jumping && m_PreviouslyGrounded)
+            // {
+            //     m_MoveDir.y = 0f;
+            // }
 
-            m_PreviouslyGrounded = m_CharacterController.isGrounded;
+            // m_PreviouslyGrounded = m_CharacterController.isGrounded;
         }
 
 
@@ -208,12 +208,12 @@ namespace UnityStandardAssets.Characters.FirstPerson
             float horizontal = CrossPlatformInputManager.GetAxis("Horizontal");
             float vertical = CrossPlatformInputManager.GetAxis("Vertical");
 
-            bool waswalking = m_IsWalking;
+            bool waswalking = true;
 
 #if !MOBILE_INPUT
             // On standalone builds, walk/run speed is modified by a key press.
             // keep track of whether or not the character is walking or running
-            m_IsWalking = !Input.GetKey(KeyCode.LeftShift);
+            m_IsWalking = true;
 #endif
             // set the desired speed to be walking or running
             speed = m_IsWalking ? m_WalkSpeed : m_RunSpeed;
